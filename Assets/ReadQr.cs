@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using ZXing;
 using ZXing.QrCode;
@@ -10,6 +11,7 @@ public class ReadQr : MonoBehaviour
 {
     private WebCamTexture camTexture;
     private Rect screenRect;
+    private byte[] byteArr = new byte[100];
 
     void Start()
     {
@@ -17,6 +19,7 @@ public class ReadQr : MonoBehaviour
         camTexture = new WebCamTexture();
         camTexture.requestedHeight = Screen.height;
         camTexture.requestedWidth = Screen.width;
+        
         if (camTexture != null)
         {
             camTexture.Play();
@@ -37,6 +40,15 @@ public class ReadQr : MonoBehaviour
             if (result != null)
             {
                 Debug.Log("DECODED TEXT FROM QR: " +result.Text);
+                char[] chararr = result.Text.ToCharArray();
+                byte[] byteArr = ASCIIEncoding.ASCII.GetBytes(result.Text);
+
+                String logOutput = "";
+                foreach (byte b in byteArr)
+                {
+                    logOutput += (b + " ");
+                }
+                Debug.Log(logOutput);
             }
         }
         catch (Exception ex) { Debug.LogWarning(ex.Message); }
@@ -48,8 +60,4 @@ public class ReadQr : MonoBehaviour
     }
 
 
-    public int[][] StringToIntArrayArray(string str)
-    {
-        int[][] intarr = new int[][] intarr;
-    }
-}
+   }
