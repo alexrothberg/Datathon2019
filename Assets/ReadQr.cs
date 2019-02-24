@@ -20,6 +20,8 @@ public struct QRData
 
 public class ReadQr : MonoBehaviour
 {
+    public GameObject[] stateArray = new GameObject[50];
+
     private WebCamTexture camTexture;
     private Rect screenRect;
 
@@ -83,6 +85,7 @@ public class ReadQr : MonoBehaviour
             for (int i = 0; i < 50; i++)
             {
                 heights[i] = encoding.IndexOf(qr[i]);
+                stateArray[i].transform.localScale = new Vector3(1, 1, heights[i]);
             }
 
             // Decodes the colors.
@@ -104,6 +107,7 @@ public class ReadQr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
 
     }
 
