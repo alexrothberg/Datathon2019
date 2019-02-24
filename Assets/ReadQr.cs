@@ -87,7 +87,7 @@ public class ReadQr : MonoBehaviour
         // Decodes the colors.
         for (int i = 0; i < 50; i++)
         {
-            heights[i] = encoding.IndexOf(qr[i + 50]);
+            colors[i] = encoding.IndexOf(qr[i + 50]);
         }
 
         return new QRData(heights, colors);
