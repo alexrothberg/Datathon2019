@@ -77,20 +77,27 @@ public class ReadQr : MonoBehaviour
         String encoding = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.";
         int[] heights = new int[50];
         int[] colors = new int[50];
-
-        // Decodes the heights.
-        for(int i = 0; i < 50; i++)
+        try
         {
-            heights[i] = encoding.IndexOf(qr[i]);
-        }
+            // Decodes the heights.
+            for (int i = 0; i < 50; i++)
+            {
+                heights[i] = encoding.IndexOf(qr[i]);
+            }
 
-        // Decodes the colors.
-        for (int i = 0; i < 50; i++)
+            // Decodes the colors.
+            for (int i = 0; i < 50; i++)
+            {
+                colors[i] = encoding.IndexOf(qr[i + 50]);
+            }
+
+            return new QRData(heights, colors);
+        }
+        catch (Exception)
         {
-            colors[i] = encoding.IndexOf(qr[i + 50]);
+            // Invalid QR format.
+            return new QRData(heights, colors);
         }
-
-        return new QRData(heights, colors);
     }
 
 
