@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using Vuforia;
 using ZXing;
 using ZXing.QrCode;
 
@@ -31,7 +32,7 @@ public class ReadQr : MonoBehaviour
         camTexture = new WebCamTexture();
         camTexture.requestedHeight = Screen.height;
         camTexture.requestedWidth = Screen.width;
-        
+
         if (camTexture != null)
         {
             camTexture.Play();
@@ -48,7 +49,7 @@ public class ReadQr : MonoBehaviour
             // Decodes the current frame.
             IBarcodeReader barcodeReader = new BarcodeReader();
             var result = barcodeReader.Decode(camTexture.GetPixels32(), camTexture.width, camTexture.height);
-            if(result != null)
+            if (result != null)
             {
                 // Decodes the QR code.
                 Debug.Log("Decoded from QR: " + result.Text);
@@ -57,7 +58,7 @@ public class ReadQr : MonoBehaviour
                 // Creates a debug string.
                 String debugHeights = "Heights: ";
                 String debugColors = "Colors: ";
-                for(int i = 0; i < 50; i++)
+                for (int i = 0; i < 50; i++)
                 {
                     debugHeights += qrData.heights[i] + " ";
                     debugColors += qrData.colors[i] + " ";
@@ -107,9 +108,18 @@ public class ReadQr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-
+        if (Input.touchCount > 0)
+        {
+            if (camTexture.isPlaying)
+            {
+                camTexture.Pause();
+            }
+            else
+            {
+                camTexture.Play();
+            }
+        }
     }
 
 
-   }
+}
