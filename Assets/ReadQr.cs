@@ -27,9 +27,9 @@ public class ReadQr : MonoBehaviour
 
     void Start()
     {
-        screenRect = new Rect(0, 0, Screen.width, Screen.height);
+        screenRect = new Rect(0, 0, Screen.width*.25f, Screen.height * .25f);
         camTexture = new WebCamTexture();
-        camTexture.requestedHeight = Screen.height;
+        camTexture.requestedHeight =  Screen.height;
         camTexture.requestedWidth = Screen.width;
         
         if (camTexture != null)
@@ -41,7 +41,7 @@ public class ReadQr : MonoBehaviour
     void OnGUI()
     {
         // drawing the camera on screen
-        GUI.DrawTexture(screenRect, camTexture, ScaleMode.ScaleToFit);
+        GUI.DrawTexture(screenRect,camTexture, ScaleMode.ScaleAndCrop);
         // do the reading — you might want to attempt to read less often than you draw on the screen for performance sake
         try
         {
@@ -85,7 +85,7 @@ public class ReadQr : MonoBehaviour
             for (int i = 0; i < 50; i++)
             {
                 heights[i] = encoding.IndexOf(qr[i]);
-                stateArray[i].transform.localScale = new Vector3(1, 1, heights[i]);
+                stateArray[i].transform.localScale = new Vector3(1, 1, heights[i]*.2f);
             }
 
             // Decodes the colors.
