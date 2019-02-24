@@ -11,7 +11,6 @@ public class ReadQr : MonoBehaviour
 {
     private WebCamTexture camTexture;
     private Rect screenRect;
-    private byte[] byteArr = new byte[100];
 
     void Start()
     {

@@ -617,7 +617,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876243390}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62d4412d0c40b714e9d5f98e727374e1, type: 3}
   m_Name: 
@@ -774,4 +774,4 @@ MonoBehaviour:
   mAspectRatio: 0.63137
   mImageTargetType: 0
   mWidth: 0.1
-  mHeight: 0.06665
+  mHeight: 0.063137
